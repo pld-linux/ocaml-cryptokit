@@ -8,6 +8,7 @@ Group:		Libraries
 Vendor:		Xavier Leroy <Xavier.Leroy@inria.fr>
 URL:		http://pauillac.inria.fr/~xleroy/software.html
 Source0:	http://caml.inria.fr/distrib/bazar-ocaml/cryptokit-%{version}.tar.gz
+# Source0-md5:	027a9a5ae4e4b46a4b0934ec683e418c
 BuildRequires:	zlib-devel
 BuildRequires:	ocaml >= 3.04-7
 %requires_eq	ocaml-runtime
