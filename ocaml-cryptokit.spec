@@ -35,7 +35,7 @@ funkcje to: szyfry symetryczne: AES, DES, 3DES, ARCFour w trybach ECB,
 CBC, CFB oraz OFB; szyfr z kluczem publicznym RSA; kryptograficzne
 funkcje skrótu i MACi: SHA-1, MD5 oraz MACi bazowane na AES oraz DES;
 generacje liczb losowych; kodowania i kompresja: base 64,
-szesntastkowa oraz zlib.
+szesnastkowa oraz zlib.
 
 Pakiet ten zawiera binaria potrzebne do uruchamiania programów
 u¿ywaj±cych tej biblioteki.
@@ -68,7 +68,7 @@ funkcje to: szyfry symetryczne: AES, DES, 3DES, ARCFour w trybach ECB,
 CBC, CFB oraz OFB; szyfr z kluczem publicznym RSA; kryptograficzne
 funkcje skrótu i MACi: SHA-1, MD5 oraz MACi bazowane na AES oraz DES;
 generacje liczb losowych; kodowania i kompresja: base 64,
-szesntastkowa oraz zlib.
+szesnastkowa oraz zlib.
 
 Pakiet ten zawiera pliki niezbêdne do tworzenia programów u¿ywaj±cych
 tej biblioteki.
