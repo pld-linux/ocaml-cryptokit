@@ -101,8 +101,6 @@ archive(native) = "cryptokit.cmxa"
 linkopts = ""
 EOF
 
-gzip -9nf LICENSE README
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
