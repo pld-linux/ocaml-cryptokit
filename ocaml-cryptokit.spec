@@ -2,8 +2,8 @@ Summary:	Cryptographic toolkit for OCaml
 Summary(pl):	Biblioteka kryptograficzna dla OCamla
 Name:		ocaml-cryptokit
 Version:	1.0
-Release:	1
-License:	LGPL w/ linking exception
+Release:	2
+License:	LGPL w/ linking exceptions
 Group:		Libraries
 Vendor:		Xavier Leroy <Xavier.Leroy@inria.fr>
 URL:		http://pauillac.inria.fr/~xleroy/software.html
@@ -114,7 +114,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc *.gz doc
+%doc LICENSE README doc
 %{_libdir}/ocaml/cryptokit/*.cm[ixa]*
 %{_libdir}/ocaml/cryptokit/*.a
 %{_examplesdir}/%{name}-%{version}
