@@ -1,16 +1,16 @@
+%define		ocaml_ver	3.09.1
 Summary:	Cryptographic toolkit for OCaml
 Summary(pl):	Biblioteka kryptograficzna dla OCamla
 Name:		ocaml-cryptokit
 Version:	1.3
-Release:	2
+Release:	3
 License:	LGPL w/ linking exceptions
 Group:		Libraries
-Vendor:		Xavier Leroy <Xavier.Leroy@inria.fr>
 URL:		http://pauillac.inria.fr/~xleroy/software.html
 Source0:	http://caml.inria.fr/distrib/bazar-ocaml/cryptokit-%{version}.tar.gz
 # Source0-md5:	d7de01d0702d16b3491c9e794ebb2cc3
+BuildRequires:	ocaml >= %{ocaml_ver}
 BuildRequires:	zlib-devel
-BuildRequires:	ocaml >= 3.04-7
 %requires_eq	ocaml-runtime
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -34,8 +34,8 @@ aplikacjach, dla których wa¿ne jest bezpieczeñstwo. Dostarczane
 funkcje to: szyfry symetryczne: AES, DES, 3DES, ARCFour w trybach ECB,
 CBC, CFB oraz OFB; szyfr z kluczem publicznym RSA; kryptograficzne
 funkcje skrótu i MACi: SHA-1, MD5 oraz MACi bazowane na AES oraz DES;
-generacje liczb losowych; kodowania i kompresja: base 64,
-szesnastkowa oraz zlib.
+generacje liczb losowych; kodowania i kompresja: base 64, szesnastkowa
+oraz zlib.
 
 Pakiet ten zawiera binaria potrzebne do uruchamiania programów
 u¿ywaj±cych tej biblioteki.
@@ -67,8 +67,8 @@ aplikacjach, dla których wa¿ne jest bezpieczeñstwo. Dostarczane
 funkcje to: szyfry symetryczne: AES, DES, 3DES, ARCFour w trybach ECB,
 CBC, CFB oraz OFB; szyfr z kluczem publicznym RSA; kryptograficzne
 funkcje skrótu i MACi: SHA-1, MD5 oraz MACi bazowane na AES oraz DES;
-generacje liczb losowych; kodowania i kompresja: base 64,
-szesnastkowa oraz zlib.
+generacje liczb losowych; kodowania i kompresja: base 64, szesnastkowa
+oraz zlib.
 
 Pakiet ten zawiera pliki niezbêdne do tworzenia programów u¿ywaj±cych
 tej biblioteki.
