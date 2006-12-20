@@ -6,9 +6,9 @@ Version:	1.3
 Release:	5
 License:	LGPL w/ linking exceptions
 Group:		Libraries
-URL:		http://pauillac.inria.fr/~xleroy/software.html
 Source0:	http://caml.inria.fr/distrib/bazar-ocaml/cryptokit-%{version}.tar.gz
 # Source0-md5:	d7de01d0702d16b3491c9e794ebb2cc3
+URL:		http://pauillac.inria.fr/~xleroy/software.html
 BuildRequires:	ocaml >= %{ocaml_ver}
 BuildRequires:	zlib-devel
 %requires_eq	ocaml-runtime
@@ -77,13 +77,15 @@ tej biblioteki.
 %setup -q -n cryptokit-%{version}
 
 %build
-%{__make} CFLAGS="%{rpmcflags} -fPIC" all allopt
+%{__make} all allopt \
+	CFLAGS="%{rpmcflags} -fPIC"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/cryptokit
-%{__make} install INSTALLDIR=$RPM_BUILD_ROOT%{_libdir}/ocaml/cryptokit
+
+%{__make} install \
+	INSTALLDIR=$RPM_BUILD_ROOT%{_libdir}/ocaml/cryptokit
 
 install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/cryptokit
 install *.cm[ixa]* *.a dll*.so $RPM_BUILD_ROOT%{_libdir}/ocaml/cryptokit
