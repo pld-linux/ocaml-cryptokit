@@ -1,6 +1,6 @@
 %define		ocaml_ver	1:3.09.2
 Summary:	Cryptographic toolkit for OCaml
-Summary(pl):	Biblioteka kryptograficzna dla OCamla
+Summary(pl.UTF-8):   Biblioteka kryptograficzna dla OCamla
 Name:		ocaml-cryptokit
 Version:	1.3
 Release:	5
@@ -27,22 +27,22 @@ Zlib compression.
 This package contains files needed to run bytecode executables using
 this library.
 
-%description -l pl
-Biblioteka Cryptokit dostarcza szerok± gamê funkcji kryptograficznych,
-które mog± byæ u¿yte w implementacji protoko³ów kryptograficznych w
-aplikacjach, dla których wa¿ne jest bezpieczeñstwo. Dostarczane
+%description -l pl.UTF-8
+Biblioteka Cryptokit dostarcza szerokÄ… gamÄ™ funkcji kryptograficznych,
+ktÃ³re mogÄ… byÄ‡ uÅ¼yte w implementacji protokoÅ‚Ã³w kryptograficznych w
+aplikacjach, dla ktÃ³rych waÅ¼ne jest bezpieczeÅ„stwo. Dostarczane
 funkcje to: szyfry symetryczne: AES, DES, 3DES, ARCFour w trybach ECB,
 CBC, CFB oraz OFB; szyfr z kluczem publicznym RSA; kryptograficzne
-funkcje skrótu i MACi: SHA-1, MD5 oraz MACi bazowane na AES oraz DES;
+funkcje skrÃ³tu i MACi: SHA-1, MD5 oraz MACi bazowane na AES oraz DES;
 generacje liczb losowych; kodowania i kompresja: base 64, szesnastkowa
 oraz zlib.
 
-Pakiet ten zawiera binaria potrzebne do uruchamiania programów
-u¿ywaj±cych tej biblioteki.
+Pakiet ten zawiera binaria potrzebne do uruchamiania programÃ³w
+uÅ¼ywajÄ…cych tej biblioteki.
 
 %package devel
 Summary:	Cryptographic toolkit for OCaml - development part
-Summary(pl):	Biblioteka kryptograficzna dla OCamla - cze¶æ programistyczna
+Summary(pl.UTF-8):   Biblioteka kryptograficzna dla OCamla - czeÅ›Ä‡ programistyczna
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %requires_eq	ocaml
@@ -60,17 +60,17 @@ Zlib compression.
 This package contains files needed to develop OCaml programs using
 this library.
 
-%description devel -l pl
-Biblioteka Cryptokit dostarcza szerok± gamê funkcji kryptograficznych,
-które mog± byæ u¿yte w implementacji protoko³ów kryptograficznych w
-aplikacjach, dla których wa¿ne jest bezpieczeñstwo. Dostarczane
+%description devel -l pl.UTF-8
+Biblioteka Cryptokit dostarcza szerokÄ… gamÄ™ funkcji kryptograficznych,
+ktÃ³re mogÄ… byÄ‡ uÅ¼yte w implementacji protokoÅ‚Ã³w kryptograficznych w
+aplikacjach, dla ktÃ³rych waÅ¼ne jest bezpieczeÅ„stwo. Dostarczane
 funkcje to: szyfry symetryczne: AES, DES, 3DES, ARCFour w trybach ECB,
 CBC, CFB oraz OFB; szyfr z kluczem publicznym RSA; kryptograficzne
-funkcje skrótu i MACi: SHA-1, MD5 oraz MACi bazowane na AES oraz DES;
+funkcje skrÃ³tu i MACi: SHA-1, MD5 oraz MACi bazowane na AES oraz DES;
 generacje liczb losowych; kodowania i kompresja: base 64, szesnastkowa
 oraz zlib.
 
-Pakiet ten zawiera pliki niezbêdne do tworzenia programów u¿ywaj±cych
+Pakiet ten zawiera pliki niezbÄ™dne do tworzenia programÃ³w uÅ¼ywajÄ…cych
 tej biblioteki.
 
 %prep
