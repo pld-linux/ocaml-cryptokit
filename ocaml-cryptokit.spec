@@ -1,6 +1,6 @@
 %define		ocaml_ver	1:3.09.2
 Summary:	Cryptographic toolkit for OCaml
-Summary(pl.UTF-8):   Biblioteka kryptograficzna dla OCamla
+Summary(pl.UTF-8):	Biblioteka kryptograficzna dla OCamla
 Name:		ocaml-cryptokit
 Version:	1.3
 Release:	5
@@ -42,7 +42,7 @@ używających tej biblioteki.
 
 %package devel
 Summary:	Cryptographic toolkit for OCaml - development part
-Summary(pl.UTF-8):   Biblioteka kryptograficzna dla OCamla - cześć programistyczna
+Summary(pl.UTF-8):	Biblioteka kryptograficzna dla OCamla - cześć programistyczna
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %requires_eq	ocaml
