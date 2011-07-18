@@ -3,7 +3,7 @@ Summary:	Cryptographic toolkit for OCaml
 Summary(pl.UTF-8):	Biblioteka kryptograficzna dla OCamla
 Name:		ocaml-cryptokit
 Version:	1.5
-Release:	1
+Release:	2
 License:	LGPL w/ linking exceptions
 Group:		Libraries
 Source0:	http://forge.ocamlcore.org/frs/download.php/639/cryptokit-%{version}.tar.gz
@@ -77,30 +77,33 @@ tej biblioteki.
 %setup -q -n cryptokit-%{version}
 
 %build
-%{__make} all allopt \
+./configure \
+	--exec-prefix %{_prefix} \
+	--prefix %{_prefix} \
+	--enable-bench
+
+%{__make} all \
 	CFLAGS="%{rpmcflags} -fPIC"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/cryptokit
 
-%{__make} install \
-	INSTALLDIR=$RPM_BUILD_ROOT%{_libdir}/ocaml/cryptokit
-
-install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/cryptokit
-install *.cm[ixa]* *.a dll*.so $RPM_BUILD_ROOT%{_libdir}/ocaml/cryptokit
+install _build/src/{*.cm[ixa]*,*.a,dll*.so} $RPM_BUILD_ROOT%{_libdir}/ocaml/cryptokit
 (cd $RPM_BUILD_ROOT%{_libdir}/ocaml && ln -s cryptokit/dll*.so .)
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
-cp -r *test.ml $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+cp -r test/*.ml $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/cryptokit
 cat > $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/cryptokit/META <<EOF
+description = "Cryptographic primitives"
 requires = "unix num"
 version = "%{version}"
 directory = "+cryptokit"
 archive(byte) = "cryptokit.cma"
 archive(native) = "cryptokit.cmxa"
+exists_if = "cryptokit.cma"
 linkopts = ""
 EOF
 
@@ -109,13 +112,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc AUTHORS.txt Changes LICENSE.txt README.txt
 %dir %{_libdir}/ocaml/cryptokit
 %attr(755,root,root) %{_libdir}/ocaml/cryptokit/*.so
 %{_libdir}/ocaml/*.so
 
 %files devel
 %defattr(644,root,root,755)
-%doc LICENSE README doc
+%doc _build/src/api-cryptokit.docdir/*
 %{_libdir}/ocaml/cryptokit/*.cm[ixa]*
 %{_libdir}/ocaml/cryptokit/*.a
 %{_examplesdir}/%{name}-%{version}
