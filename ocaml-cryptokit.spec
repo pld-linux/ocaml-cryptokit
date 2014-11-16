@@ -3,7 +3,7 @@ Summary:	Cryptographic toolkit for OCaml
 Summary(pl.UTF-8):	Biblioteka kryptograficzna dla OCamla
 Name:		ocaml-cryptokit
 Version:	1.9
-Release:	1
+Release:	2
 License:	LGPL w/ linking exceptions
 Group:		Libraries
 Source0:	http://forge.ocamlcore.org/frs/download.php/1229/cryptokit-%{version}.tar.gz
