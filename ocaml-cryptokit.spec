@@ -1,15 +1,23 @@
-%define		ocaml_ver	1:3.09.2
+#
+# Conditional build:
+%bcond_without	ocaml_opt	# skip building native optimized binaries (bytecode is always built)
+
+# not yet available on x32 (ocaml 4.02.1), remove when upstream will support it
+%ifnarch %{ix86} %{x8664} arm aarch64 ppc sparc sparcv9
+%undefine	with_ocaml_opt
+%endif
+
 Summary:	Cryptographic toolkit for OCaml
 Summary(pl.UTF-8):	Biblioteka kryptograficzna dla OCamla
 Name:		ocaml-cryptokit
 Version:	1.9
-Release:	2
+Release:	3
 License:	LGPL w/ linking exceptions
 Group:		Libraries
 Source0:	http://forge.ocamlcore.org/frs/download.php/1229/cryptokit-%{version}.tar.gz
 # Source0-md5:	4432a426c9d260822f4ff2b0750413de
 URL:		http://pauillac.inria.fr/~xleroy/software.html
-BuildRequires:	ocaml >= %{ocaml_ver}
+BuildRequires:	ocaml >= 1:3.09.2
 BuildRequires:	zlib-devel
 %requires_eq	ocaml-runtime
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -80,7 +88,7 @@ tej biblioteki.
 ./configure \
 	--exec-prefix %{_prefix} \
 	--prefix %{_prefix} \
-	--enable-bench
+	%{?with_ocaml_opt:--enable-bench}
 
 %{__make} all \
 	CFLAGS="%{rpmcflags} -fPIC"
