@@ -1,8 +1,9 @@
+# TODO: unity dll*stubs.so location to %{_libdir}/ocaml/stublibs?
 #
 # Conditional build:
 %bcond_without	ocaml_opt	# skip building native optimized binaries (bytecode is always built)
 
-# not yet available on x32 (ocaml 4.02.1), remove when upstream will support it
+# not yet available on x32 (ocaml 4.02.1), update when upstream will support it
 %ifnarch %{ix86} %{x8664} arm aarch64 ppc sparc sparcv9
 %undefine	with_ocaml_opt
 %endif
@@ -10,13 +11,13 @@
 Summary:	Cryptographic toolkit for OCaml
 Summary(pl.UTF-8):	Biblioteka kryptograficzna dla OCamla
 Name:		ocaml-cryptokit
-Version:	1.9
-Release:	3
-License:	LGPL w/ linking exceptions
+Version:	1.10
+Release:	1
+License:	LGPL v2 with linking exception
 Group:		Libraries
-Source0:	http://forge.ocamlcore.org/frs/download.php/1229/cryptokit-%{version}.tar.gz
-# Source0-md5:	4432a426c9d260822f4ff2b0750413de
-URL:		http://pauillac.inria.fr/~xleroy/software.html
+Source0:	http://forge.ocamlcore.org/frs/download.php/1493/cryptokit-%{version}.tar.gz
+# Source0-md5:	aa697b894f87cc19643543ad1dae6c3f
+URL:		http://pauillac.inria.fr/~xleroy/software.html#cryptokit
 BuildRequires:	ocaml >= 1:3.09.2
 BuildRequires:	zlib-devel
 %requires_eq	ocaml-runtime
@@ -122,13 +123,22 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS.txt Changes LICENSE.txt README.txt
 %dir %{_libdir}/ocaml/cryptokit
-%attr(755,root,root) %{_libdir}/ocaml/cryptokit/*.so
-%{_libdir}/ocaml/*.so
+%attr(755,root,root) %{_libdir}/ocaml/cryptokit/dllcryptokit_stubs.so
+%attr(755,root,root) %{_libdir}/ocaml/dllcryptokit_stubs.so
+%{_libdir}/ocaml/cryptokit/cryptokit.cma
+%if %{with ocaml_opt}
+%attr(755,root,root) %{_libdir}/ocaml/cryptokit/cryptokit.cmxs
+%endif
+%{_libdir}/ocaml/site-lib/cryptokit
 
 %files devel
 %defattr(644,root,root,755)
 %doc _build/src/api-cryptokit.docdir/*
-%{_libdir}/ocaml/cryptokit/*.cm[ixa]*
-%{_libdir}/ocaml/cryptokit/*.a
+%{_libdir}/ocaml/cryptokit/cryptokit.cmi
+%{_libdir}/ocaml/cryptokit/libcryptokit_stubs.a
+%if %{with ocaml_opt}
+%{_libdir}/ocaml/cryptokit/cryptokit.a
+%{_libdir}/ocaml/cryptokit/cryptokit.cmx
+%{_libdir}/ocaml/cryptokit/cryptokit.cmxa
+%endif
 %{_examplesdir}/%{name}-%{version}
-%{_libdir}/ocaml/site-lib/cryptokit
