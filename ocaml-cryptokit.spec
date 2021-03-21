@@ -11,14 +11,19 @@
 Summary:	Cryptographic toolkit for OCaml
 Summary(pl.UTF-8):	Biblioteka kryptograficzna dla OCamla
 Name:		ocaml-cryptokit
-Version:	1.10
-Release:	3
+Version:	1.16.1
+%define		verrel release%(echo %{version} | tr -d .)
+Release:	1
 License:	LGPL v2 with linking exception
 Group:		Libraries
-Source0:	http://forge.ocamlcore.org/frs/download.php/1493/cryptokit-%{version}.tar.gz
-# Source0-md5:	aa697b894f87cc19643543ad1dae6c3f
+Source0:	https://github.com/xavierleroy/cryptokit/archive/%{verrel}/cryptokit-%{version}.tar.gz
+# Source0-md5:	18591fc3f467bc33681be2cede36b8f1
 URL:		http://pauillac.inria.fr/~xleroy/software.html#cryptokit
 BuildRequires:	ocaml >= 1:3.09.2
+BuildRequires:	ocaml-dune
+BuildRequires:	ocaml-dune-devel
+BuildRequires:	ocaml-zarith
+BuildRequires:	ocaml-zarith-devel
 BuildRequires:	zlib-devel
 %requires_eq	ocaml-runtime
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -54,7 +59,7 @@ Summary:	Cryptographic toolkit for OCaml - development part
 Summary(pl.UTF-8):	Biblioteka kryptograficzna dla OCamla - cześć programistyczna
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-%requires_eq	ocaml
+%requires_eq ocaml
 
 %description devel
 The Cryptokit library for Objective Caml provides a variety of
@@ -83,62 +88,53 @@ Pakiet ten zawiera pliki niezbędne do tworzenia programów używających
 tej biblioteki.
 
 %prep
-%setup -q -n cryptokit-%{version}
+%setup -q -n cryptokit-%{verrel}
 
 %build
-./configure \
-	--exec-prefix %{_prefix} \
-	--prefix %{_prefix} \
-	%{?with_ocaml_opt:--enable-bench}
-
-%{__make} all \
-	CFLAGS="%{rpmcflags} -fPIC"
+dune build %{?_smp_mflags} @install
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/cryptokit
 
-install _build/src/{*.cm[ixa]*,*.a,dll*.so} $RPM_BUILD_ROOT%{_libdir}/ocaml/cryptokit
-(cd $RPM_BUILD_ROOT%{_libdir}/ocaml && ln -s cryptokit/dll*.so .)
+dune install --destdir=$RPM_BUILD_ROOT
+
+find $RPM_BUILD_ROOT%{_libdir}/ocaml -name \*.ml -delete
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp -r test/*.ml $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/cryptokit
-cat > $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/cryptokit/META <<EOF
-description = "Cryptographic primitives"
-requires = "unix num"
-version = "%{version}"
-directory = "+cryptokit"
-archive(byte) = "cryptokit.cma"
-archive(native) = "cryptokit.cmxa"
-exists_if = "cryptokit.cma"
-linkopts = ""
-EOF
+ln -sr $RPM_BUILD_ROOT%{_libdir}/ocaml/{,site-lib}/cryptokit
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS.txt Changes LICENSE.txt README.txt
+%doc Changes LICENSE README.md
 %dir %{_libdir}/ocaml/cryptokit
-%attr(755,root,root) %{_libdir}/ocaml/cryptokit/dllcryptokit_stubs.so
-%attr(755,root,root) %{_libdir}/ocaml/dllcryptokit_stubs.so
-%{_libdir}/ocaml/cryptokit/cryptokit.cma
+%attr(755,root,root) %{_libdir}/ocaml/stublibs/dllcryptokit_stubs.so
+%{_libdir}/ocaml/cryptokit/cryptokit*.cma
+%{_libdir}/ocaml/cryptokit/cryptokit*.cmi
+%{_libdir}/ocaml/cryptokit/cryptokit*.cmt
+%{_libdir}/ocaml/cryptokit/cryptokit*.cmti
 %if %{with ocaml_opt}
 %attr(755,root,root) %{_libdir}/ocaml/cryptokit/cryptokit.cmxs
 %endif
+%{_libdir}/ocaml/cryptokit/META
+%{_libdir}/ocaml/cryptokit/dune-package
+%{_libdir}/ocaml/cryptokit/opam
 %{_libdir}/ocaml/site-lib/cryptokit
 
 %files devel
 %defattr(644,root,root,755)
-%doc _build/src/api-cryptokit.docdir/*
 %{_libdir}/ocaml/cryptokit/cryptokit.cmi
 %{_libdir}/ocaml/cryptokit/libcryptokit_stubs.a
+%{_libdir}/ocaml/cryptokit/cryptokit*.mli
 %if %{with ocaml_opt}
-%{_libdir}/ocaml/cryptokit/cryptokit.a
-%{_libdir}/ocaml/cryptokit/cryptokit.cmx
-%{_libdir}/ocaml/cryptokit/cryptokit.cmxa
+%{_libdir}/ocaml/cryptokit/cryptokit*.a
+%{_libdir}/ocaml/cryptokit/cryptokit*.cmx
+%{_libdir}/ocaml/cryptokit/cryptokit*.cmxa
 %endif
 %{_examplesdir}/%{name}-%{version}
