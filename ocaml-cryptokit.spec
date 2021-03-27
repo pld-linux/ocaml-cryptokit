@@ -13,7 +13,7 @@ Summary(pl.UTF-8):	Biblioteka kryptograficzna dla OCamla
 Name:		ocaml-cryptokit
 Version:	1.16.1
 %define		verrel release%(echo %{version} | tr -d .)
-Release:	1
+Release:	2
 License:	LGPL v2 with linking exception
 Group:		Libraries
 Source0:	https://github.com/xavierleroy/cryptokit/archive/%{verrel}/cryptokit-%{version}.tar.gz
@@ -104,9 +104,6 @@ find $RPM_BUILD_ROOT%{_libdir}/ocaml -name \*.ml -delete
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp -r test/*.ml $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/cryptokit
-ln -sr $RPM_BUILD_ROOT%{_libdir}/ocaml/{,site-lib}/cryptokit
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -123,9 +120,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/ocaml/cryptokit/cryptokit.cmxs
 %endif
 %{_libdir}/ocaml/cryptokit/META
-%{_libdir}/ocaml/cryptokit/dune-package
-%{_libdir}/ocaml/cryptokit/opam
-%{_libdir}/ocaml/site-lib/cryptokit
 
 %files devel
 %defattr(644,root,root,755)
@@ -137,4 +131,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/cryptokit/cryptokit*.cmx
 %{_libdir}/ocaml/cryptokit/cryptokit*.cmxa
 %endif
+%{_libdir}/ocaml/cryptokit/dune-package
+%{_libdir}/ocaml/cryptokit/opam
 %{_examplesdir}/%{name}-%{version}
