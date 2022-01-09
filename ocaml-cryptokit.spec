@@ -54,7 +54,7 @@ używających tej biblioteki.
 
 %package devel
 Summary:	Cryptographic toolkit for OCaml - development part
-Summary(pl.UTF-8):	Biblioteka kryptograficzna dla OCamla - cześć programistyczna
+Summary(pl.UTF-8):	Biblioteka kryptograficzna dla OCamla - część programistyczna
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %requires_eq	ocaml
