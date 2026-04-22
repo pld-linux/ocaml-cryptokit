@@ -12,7 +12,7 @@ Summary(pl.UTF-8):	Biblioteka kryptograficzna dla OCamla
 Name:		ocaml-cryptokit
 Version:	1.16.1
 %define		verrel release%(echo %{version} | tr -d .)
-Release:	3
+Release:	4
 License:	LGPL v2 with linking exception
 Group:		Libraries
 #Source0Download: https://github.com/xavierleroy/cryptokit/releases
