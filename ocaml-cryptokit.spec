@@ -100,7 +100,7 @@ dune install --destdir=$RPM_BUILD_ROOT
 # sources
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/cryptokit/*.ml
 # packaged as %doc
-%{__rm} -r $RPM_BUILD_ROOT%{_prefix}/doc/cryptokit
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/cryptokit
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp -pr test/*.ml $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
